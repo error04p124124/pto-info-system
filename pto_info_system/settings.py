@@ -79,13 +79,6 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
-]
-
-# Whitenoise только для production
-if not DEBUG:
-    MIDDLEWARE.append('whitenoise.middleware.WhiteNoiseMiddleware')
-
-MIDDLEWARE += [
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -151,15 +144,14 @@ USE_TZ = True
 
 
 # Static files (CSS, JavaScript, Images)
-STATIC_URL = 'static/'
-STATICFILES_DIRS = [
-    BASE_DIR / 'static',
-]
+STATIC_URL = '/static/'
 STATIC_ROOT = BASE_DIR / 'staticfiles'
 
-# Whitenoise configuration - только для production
-if not DEBUG:
-    STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+# В режиме разработки (DEBUG=True) используем STATICFILES_DIRS
+if DEBUG:
+    STATICFILES_DIRS = [
+        BASE_DIR / 'static',
+    ]
 
 # Media files
 MEDIA_URL = '/media/'
