@@ -54,6 +54,7 @@ SESSION_COOKIE_SAMESITE = 'None'
 
 # Application definition
 INSTALLED_APPS = [
+    'jazzmin',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -213,4 +214,100 @@ REST_FRAMEWORK = {
     'DEFAULT_FILTER_BACKENDS': [
         'django_filters.rest_framework.DjangoFilterBackend',
     ],
+}
+
+
+# ==========================================
+# JAZZMIN SETTINGS - Настройка админки
+# ==========================================
+
+JAZZMIN_SETTINGS = {
+    # Заголовок админки
+    "site_title": "ПТО Система",
+    "site_header": "Система инженера ПТО",
+    "site_brand": "ПТО Администрирование",
+    "site_logo": None,
+    "login_logo": None,
+    "site_logo_classes": "img-circle",
+    "site_icon": None,
+    "welcome_sign": "Добро пожаловать в систему управления скважинами",
+    "copyright": "ОАО НефтьГазПром",
+    "search_model": ["accounts.User", "wells.Well"],
+    
+    # Иконки для пользователя
+    "user_avatar": None,
+    
+    # Верхнее меню
+    "topmenu_links": [
+        {"name": "Главная", "url": "admin:index", "permissions": ["auth.view_user"]},
+        {"name": "Перейти на сайт", "url": "/", "new_window": True},
+        {"model": "accounts.User"},
+        {"model": "wells.Well"},
+    ],
+    
+    # Показывать ли боковое меню
+    "show_sidebar": True,
+    "navigation_expanded": True,
+    "hide_apps": [],
+    "hide_models": [],
+    
+    # Иконки для приложений и моделей
+    "icons": {
+        "auth": "fas fa-users-cog",
+        "accounts.User": "fas fa-user",
+        "wells.Well": "fas fa-tint",
+        "wells.ApprovalStep": "fas fa-check-circle",
+        "documents.Document": "fas fa-file-alt",
+        "notifications.Notification": "fas fa-bell",
+    },
+    
+    # Иконки для действий
+    "default_icon_parents": "fas fa-chevron-circle-right",
+    "default_icon_children": "fas fa-circle",
+    
+    # UI Tweaks
+    "custom_css": None,
+    "custom_js": None,
+    "use_google_fonts_cdn": True,
+    "show_ui_builder": False,
+    
+    # Настройки темы
+    "changeform_format": "horizontal_tabs",
+    "changeform_format_overrides": {"auth.user": "collapsible", "auth.group": "vertical_tabs"},
+    
+    # Цветовая схема (серая тема под проект)
+    "theme": "cyborg",  # Темная тема
+}
+
+# Настройка UI для jazzmin
+JAZZMIN_UI_TWEAKS = {
+    "navbar_small_text": False,
+    "footer_small_text": False,
+    "body_small_text": False,
+    "brand_small_text": False,
+    "brand_colour": "navbar-dark",
+    "accent": "accent-primary",
+    "navbar": "navbar-dark navbar-gray-dark",
+    "no_navbar_border": False,
+    "navbar_fixed": True,
+    "layout_boxed": False,
+    "footer_fixed": False,
+    "sidebar_fixed": True,
+    "sidebar": "sidebar-dark-primary",
+    "sidebar_nav_small_text": False,
+    "sidebar_disable_expand": False,
+    "sidebar_nav_child_indent": False,
+    "sidebar_nav_compact_style": False,
+    "sidebar_nav_legacy_style": False,
+    "sidebar_nav_flat_style": False,
+    "theme": "cyborg",
+    "dark_mode_theme": None,
+    "button_classes": {
+        "primary": "btn-primary",
+        "secondary": "btn-secondary",
+        "info": "btn-info",
+        "warning": "btn-warning",
+        "danger": "btn-danger",
+        "success": "btn-success"
+    }
 }
